@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
                 
-        let navigation = UINavigationController(rootViewController: SplashViewController())
+        let navigation = UINavigationController(rootViewController: LoginBottomSheetViewController())
         
         window.rootViewController = navigation
         self.window = window

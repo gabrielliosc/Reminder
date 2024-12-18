@@ -12,7 +12,8 @@ class LoginBottomSheetView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Entre para acessar suas receitas"
+        label.text = "login.label.title".localized
+        label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -27,7 +28,7 @@ class LoginBottomSheetView: UIView {
     
     private let emailTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "email@exemplo.com"
+        text.placeholder = "login.email.placeholder".localized
         text.borderStyle = .roundedRect
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
@@ -35,7 +36,7 @@ class LoginBottomSheetView: UIView {
     
     private let passwordTextField: UITextField = {
         let text = UITextField()
-        text.placeholder = "senha"
+        text.placeholder = "login.password.placeholder".localized
         text.borderStyle = .roundedRect
         text.translatesAutoresizingMaskIntoConstraints = false
         text.isSecureTextEntry = true
@@ -44,7 +45,7 @@ class LoginBottomSheetView: UIView {
     
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Entrar", for: .normal)
+        button.setTitle("login.button.title".localized, for: .normal)
         button.backgroundColor = Colors.primaryBlueBase
         button.layer.cornerRadius = Metrics.tiny
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -53,18 +54,28 @@ class LoginBottomSheetView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupUI()
+        
+        //Exemplo de uso de gesto
+        let exampleGest = UITapGestureRecognizer(target: self, action: #selector(exampleTaped))
+        titleLabel.addGestureRecognizer(exampleGest)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //Função para examplo de uso do gesto Tap
+    @objc
+    private func exampleTaped() {
+        print("Clicou na label")
+    }
+    
     private func setupUI() {
         self.backgroundColor = .white
         self.layer.cornerRadius = Metrics.small
         
+        self.addSubview(handleArea)
         self.addSubview(titleLabel)
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
